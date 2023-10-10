@@ -183,11 +183,16 @@ world_coffee_inner <- inner_join(world, coffee_data, by = "name_long")
 
 Let's visualize what a the inner join did to our spatial object
 ```{r include=TRUE}
-
+tm_shape(world_coffee_inner) +
+  tm_polygons(fill = "coffee_production_2017",
+              title = "Coffee production (2017)") +
+  tm_layout(legend.outside = TRUE)
 ```
 
 And let's test what would happen if we flipped the order of the data sets in the join
 ```{r include=TRUE}
-
+world_coffee = left_join(coffee_data, world, by = "name_long")
+class(world_coffee)
+names(world_coffee)
 ```
 
